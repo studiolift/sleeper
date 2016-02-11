@@ -9,8 +9,7 @@ setup)
   echo "Building docker images..."
   docker-compose build
   echo "Setting up database..."
-  # NOTE: We sleep here just to make sure any database containers are ready
-  docker-compose run --rm app "sleep 5; bundle exec rake db:setup"
+  docker-compose run --rm app bundle exec rake db:setup
   ;;
 start)
   echo "Starting up... (Press Ctrl + C to stop at any time)"
