@@ -4,6 +4,12 @@
 #
 # Basic commands for a Ruby-on-Rails development environment on Docker
 
+# Prep
+if [ "$(docker-machine status)" != 'Running' ]; then
+  echo 'Docker not running. Starting...'
+  docker-machine start
+fi
+
 case "$1" in
 setup)
   echo "Building docker images..."
