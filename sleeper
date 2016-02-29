@@ -22,8 +22,12 @@ setup)
   docker-compose build
   ;;
 start)
-  echo "Starting up... (Press Ctrl + C to stop at any time)"
-  docker-compose up
+  echo "Starting up..."
+  docker-compose up -d
+  echo "Application running!"
+  ;;
+logs)
+  docker-compose logs
   ;;
 dbsetup)
   echo "Setting up database..."
@@ -56,7 +60,7 @@ rails)
   echo "Commands:"
   echo "  setup     Setup the docker images and database"
   echo "  start     Start the application"
-  echo "  open      Open the application in your browser"
+  echo "  logs      View logging output"
   echo "  dbsetup   Setup database"
   echo "  migrate   Run any pending migrations"
   echo "  seed      Seed the database with example data"
