@@ -7,13 +7,7 @@ Basic commands for a Ruby-on-Rails development environment on Docker.
 
 ## Setup
 
-Install dependencies
-
-`brew update && brew cask install dockertoolbox`
-
-Setup the machine
-
-`docker-machine create default`
+You must have an accessible docker environment. If you are on OSX, try [dream](https://github.com/studiolift/dream) or [Docker Toolbox](https://www.docker.com/products/docker-toolbox). Untested on Linux but should work... PRs welcome if not!
 
 Add `sleeper` to your `$PATH`.
 
