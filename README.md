@@ -48,12 +48,12 @@ app:
 
 When in the project directory you can setup and run the application without having to remember all the `docker-compose` commands.
 
-First `sleeper setup` to build the images and setup the database (create, migrate and seed).
+`sleeper start` to spin up the containers and get the application going.
 
-Then `sleeper start` to spin up the containers and get the application going
+Typical Rails apps will also need the database setting up: `sleeper dbsetup`
 
-Finally in a new terminal window run `sleeper open` to open the application in your browser, without having to check for IP addresses and port numbers.
+You can view log output using `sleeper logs`
 
-When you are done, `Ctrl+C` in the `sleeper start` terminal to close.
+When you are done, `sleeper stop` will close everything down again.
 
 For more commands: `sleeper help`
