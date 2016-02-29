@@ -14,8 +14,6 @@ case "$1" in
 setup)
   echo "Building docker images..."
   docker-compose build
-  echo "Setting up database..."
-  docker-compose run --rm app bundle exec rake db:setup
   ;;
 start)
   echo "Starting up... (Press Ctrl + C to stop at any time)"
@@ -23,6 +21,11 @@ start)
   ;;
 open)
   open "http://$(docker-machine ip):$(docker-compose port app 3000 | awk -F ':' '{print $2}')"
+  ;;
+dbsetup)
+  echo "Setting up database..."
+  docker-compose up -d db
+  docker-compose run --rm app bundle exec rake db:setup
   ;;
 migrate)
   echo "Migrating database..."
@@ -45,6 +48,7 @@ console)
   echo "  setup     Setup the docker images and database"
   echo "  start     Start the application"
   echo "  open      Open the application in your browser"
+  echo "  dbsetup   Setup database"
   echo "  migrate   Run any pending migrations"
   echo "  seed      Seed the database with example data"
   echo "  console   Start a rails console"
