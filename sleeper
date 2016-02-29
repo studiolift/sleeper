@@ -4,6 +4,18 @@
 #
 # Basic commands for a Ruby-on-Rails development environment on Docker
 
+app_run() {
+  docker-compose run --rm app "$@"
+}
+
+run_rake() {
+  app_run rake "$@"
+}
+
+run_rails() {
+  app_run rails "$@"
+}
+
 case "$1" in
 setup)
   echo "Building docker images..."
@@ -16,19 +28,22 @@ start)
 dbsetup)
   echo "Setting up database..."
   docker-compose up -d db
-  docker-compose run --rm app bundle exec rake db:setup
+  run_rake db:setup
   ;;
 migrate)
   echo "Migrating database..."
-  docker-compose run --rm app bundle exec rake db:migrate
+  run_rake db:migrate
   ;;
 seed)
   echo "Adding seed data..."
-  docker-compose run --rm app bundle exec rake db:seed
+  run_rake db:seed
   ;;
 console)
   echo "Starting rails console..."
-  docker-compose run --rm app bundle exec rails console
+  run_rails console
+  ;;
+rake)
+  run_rake "${@:2}"
   ;;
 *)
   echo "Basic commands for a Ruby-on-Rails development environment on Docker"
@@ -43,5 +58,6 @@ console)
   echo "  migrate   Run any pending migrations"
   echo "  seed      Seed the database with example data"
   echo "  console   Start a rails console"
+  echo "  rake      Run rake tasks"
   exit 1
 esac
