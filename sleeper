@@ -30,6 +30,17 @@ stop)
   echo "Shutting down..."
   docker-compose stop
   ;;
+restart)
+  echo 'Restarting...'
+  docker-compose stop
+  docker-compose up -d
+  ;;
+rebuild)
+  echo 'Rebuilding...'
+  docker-compose stop
+  docker-compose build
+  docker-compose up -d
+  ;;
 logs)
   docker-compose logs
   ;;
@@ -65,6 +76,8 @@ rails)
   echo "  setup     Setup the docker images and database"
   echo "  start     Start the application"
   echo "  stop      Stop the application"
+  echo "  restart   Stops and starts the application"
+  echo "  rebuild   Rebuilds the docker images (useful for installing gems)"
   echo "  logs      View logging output"
   echo "  dbsetup   Setup database"
   echo "  migrate   Run any pending migrations"
